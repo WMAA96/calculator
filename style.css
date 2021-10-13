@@ -1,6 +1,31 @@
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+
 #calculator {
-    width: 400px;
-    border: 1px solid black;
+    height: 650px;
+    width: 650px;
+    border: 5px solid black;
+    display: grid;
+    background-color: grey;
+    justify-content: center;
+    
+}
+
+#display {
+    background-color: rgb(200, 235, 157);
+    height: 50px;
+    margin: 15px;
+    border: 2px solid black;
+    text-align: right;
+    font-size: 40px;
+    
+    
 }
 
 
@@ -8,5 +33,12 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px;
+    height: 500px;
+    width: 500px;   
 
 }
+
+button {
+    border: 2px solid black;
+}
+
