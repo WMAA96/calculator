@@ -45,6 +45,11 @@
 }
 
 button {
+    font-size: 45px;
     border: 2px solid black;
+}
+
+button:hover {
+    background-color: #ddd;
 }
 

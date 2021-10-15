@@ -1,6 +1,7 @@
 const display = document.querySelector("#lowerDisplay");
 const upperDisplay = document.querySelector("#upperDisplay");
 display.textContent = "";
+upperDisplay.textContent = "";
 let operator = "";
 let first = "";
 let second = "";
@@ -12,20 +13,13 @@ const buttons = (document.querySelectorAll(".button"));
 
 
 function updateDisplay(e) {
-    console.log(this.className);
 
     if(this.id === "clear") {
-        display.textContent = "";
-        upperDisplay.textContent = "";
+        clear();
     } else if (this.className === "button operator") {
-        first = display.textContent;
-        operator = this.id;
-        upperDisplay.textContent = display.textContent;
-        display.textContent ="";     
+        operatorClicked(this.id);
     } else if(this.id === "=") {
-        second = display.textContent;
-        upperDisplay.textContent = "";
-        display.textContent = operate(operator, first, second);
+        equals();
 
     }else
 
@@ -34,7 +28,41 @@ function updateDisplay(e) {
 }
 
 
+function operatorClicked(id) {
+    if(upperDisplay.textContent && display.textContent !=="") {
+        first = upperDisplay.textContent;
+        second = display.textContent;
+        display.textContent = operate(operator, first, second);
+    } else
+    first = display.textContent;
+    operator = id;
+    upperDisplay.textContent = display.textContent;
+    display.textContent ="";   
+}
+
+function clear() {
+    display.textContent = "";
+    upperDisplay.textContent = "";
+    operator = "";
+    first = "";
+    second = "";
+}
+
+function equals() {
+    if(upperDisplay.textContent === ""|| display.textContent ==="") {
+        return;
+    } else
+    first = upperDisplay.textContent;
+    second = display.textContent;
+    upperDisplay.textContent = "";
+    display.textContent = operate(operator, first, second);
+}
+
+
+
 function add(a, b) {
+    a = parseFloat(a);
+    b = parseFloat(b);
     return a + b;
 }
 
@@ -47,12 +75,15 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if(a && b === "0") {
+        return "Nice try";
+    }
     return a / b;
 }
 
 
 function operate(operator, a, b) {
-    
+console.log("operate has been called:" + a + operator + b);
     switch(operator) {
         case "+":
             return add(a,b);
